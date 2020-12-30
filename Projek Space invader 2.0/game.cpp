@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void HideCursor() { // Hides the cursor :3
+void HideCursor() { // Hides the cursor
 	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO cci;
 	cci.dwSize = 1;
@@ -21,6 +21,7 @@ game::game()
 	player = NULL;
 	exit = false;
 }
+//inisialisasi game (boot up)
 void game::Initialize()
 {
 	for (int i = 0; i < bullet_count; i++)
@@ -48,7 +49,7 @@ void game::Initialize()
 	LastFrameTime = GetTickCount64();
 	arena.create_map(28, 81);
 }
-
+// clearscreen seperti system cls
 void game::ClearScreen()
 {
 	player->Erase();
@@ -63,7 +64,7 @@ void game::ClearScreen()
 
 
 }
-
+//menggambar objek permainan
 void game::Draw()
 {
 	player->Draw();
@@ -85,7 +86,7 @@ void game::Draw()
 		cout << "    GAME OVER!!! Press Esc to exit...";
 	}
 }
-
+//inti atau core dari game, mengupdate dan mengecek semua event di game
 void game::Update(float elapsed)
 {
 	if (over)
@@ -109,6 +110,7 @@ void game::Update(float elapsed)
 			i++;
 	}
 
+//spawntimer untuk spawn musuh
 	SpawnTimer -= elapsed;
 	{
 		if (SpawnTimer <= 0.0f)
@@ -204,28 +206,9 @@ void game::Update(float elapsed)
 		}
 	}
 
-	////collision peluru sama item
-	//for (int i = 0; i < bullet_count; i++)
-	//{
-	//	if (!bullets[i]->GetState() == STATE_ACTIVE) continue;
-	//	for (list<HealthBox*>::iterator e = item.begin(); e != item.end(); e++)
-	//	{
-	//		HealthBox* items = *e;
-	//		if (items->GetState() == STATE_ACTIVE && bullets[i]->Intersects(items))
-	//		{
-	//			items->GetHit(1);
-	//			if (items->GetHP() <= 0)
-	//				this->Life++;
-
-	//			bullets[i]->SetState(STATE_INACTIVE);
-	//			break;
-	//		}
-	//	}
-	//}
-
-
 }
 
+//proses input dri player
 void game::ProcessInput()
 {
 	if (_kbhit())

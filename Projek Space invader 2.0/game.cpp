@@ -29,7 +29,7 @@ void game::Initialize()
 
 	bullet_count = 0;
 	
-	// cara loop semua elemen di vector dengan iterator //
+	// cara loop semua elemen dengan list menggunakan iterator //
 
 	for (list<CBasicEnemy*>::iterator i = enemies.begin(); i != enemies.end(); i++)
 		delete* i;
@@ -49,6 +49,7 @@ void game::Initialize()
 	LastFrameTime = GetTickCount64();
 	arena.create_map(28, 81);
 }
+
 // clearscreen seperti system cls
 void game::ClearScreen()
 {
@@ -64,6 +65,7 @@ void game::ClearScreen()
 
 
 }
+
 //menggambar objek permainan
 void game::Draw()
 {
@@ -86,6 +88,7 @@ void game::Draw()
 		cout << "    GAME OVER!!! Press Esc to exit...";
 	}
 }
+
 //inti atau core dari game, mengupdate dan mengecek semua event di game
 void game::Update(float elapsed)
 {
